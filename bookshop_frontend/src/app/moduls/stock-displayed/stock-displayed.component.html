@@ -1,0 +1,26 @@
+<body>
+    @if (loading){
+        <div> Loading.... </div>
+    }
+    @else if (!loading && (bookStock == null ||  bookStock.length == 0)) {
+        <div> No Books avaliable. </div>
+        @if(personnalStock){
+            <a href="addToMyStock"> <button class="new-book-button"> Add a new book?</button></a>
+        }
+    }
+    @else {
+
+        @if(!personnalStock){
+            <h1> Book Name : {{bookStock[0].book.name}} </h1>
+        }
+        <div class="stock-container">
+            @for (stock of bookStock; track $index) {
+                <app-stock [stock]="stock" [personnalStock]="personnalStock"></app-stock>
+            }
+            @if(personnalStock){
+                <a href="addToMyStock"> <button class="new-book-button"> Add a new book?</button></a>
+            }
+        </div>
+
+    }
+</body>

@@ -1,0 +1,17 @@
+
+.image-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-image{
+    width: 600px;
+    height: 600px;
+}
+
+h1{
+    color: #4E342E;
+    text-align: center;
+}

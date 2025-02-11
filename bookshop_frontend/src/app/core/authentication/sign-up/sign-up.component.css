@@ -1,0 +1,101 @@
+body{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+    background-image: url("/images/book-background-darkened.jpg");
+    background-size: cover;
+
+}
+
+body h3{
+    font-size : 25px;
+    text-align: center;
+    color: #4E342E;
+}
+
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    height : 85%;
+    width: 30%;
+    min-width: 300px;
+    border-style: solid;
+    border-color: #4E342E;
+    padding: 10px;
+    margin-right: 10%;
+    box-shadow: 10px 10px 5px rgba(128, 128, 128, 0.518);
+    background-color: #F5E8D3;
+    justify-self: flex-end;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.form-container > *{
+    padding : 0px 15px;
+}
+
+.informations{
+    margin: 13px 0px;
+}
+
+.real-form{
+    display: flex;
+    flex-direction: column;
+    padding : 0;
+    margin: 0;
+    flex: 1;
+}
+
+.input-field {
+    background-color: #FFF8E1;
+    border-radius: 10px;
+    border: 0;
+    box-sizing: border-box;
+    font-size: 15px;
+    padding: 10px 0px;
+    padding-left: 10px;
+    outline: 0;
+    width: 100%;
+
+    
+}
+
+.form-label{
+    margin-bottom: 10px;
+    display: block;
+}
+
+
+.submit-button{
+    margin-left: 10px;
+    padding : 10px 25px;
+    font-size: medium;
+    background-color: #FFB300;
+    display: block;
+    width: 50%;
+    align-self: center;
+    margin-top: 10%;
+}
+
+
+.shelf{
+    font-family: 'Merriweather', serif;
+    font-size: 6em;
+    color: #4E342E;
+}
+
+.scape{
+    color: #FFC107;
+    font-size: 6em;
+}
+
+.logo-container{
+    flex: 1;
+    min-width: 00px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

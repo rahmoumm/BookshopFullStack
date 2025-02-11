@@ -1,0 +1,25 @@
+<body>
+    @if(loading){
+        <p> Loading .....</p>
+    }
+    @else {
+        <div class="form-container">
+            <h2> Updating your stock of the book : {{this.oldStock.book.name}} </h2>
+            <form  [formGroup] = "stockUpdateForm"  (ngSubmit)="updateStock()" class = "update-form" >
+                    <p> Update the informations you want about the stock : </p>
+                    <label for = "new-price" class="label-form"> New Price :</label>
+                    <input id="new-price" [value] = "this.oldStock.price" formControlName = "price"  class="input-field">
+
+                    <label for = "new-vairation" class="label-form"> Stock Quantity Variation : 
+                        <span class="tooltip">? 
+                            <span class="tooltiptext"> Enter a quantity: Positive values will be added to the stock, while negative values will be subtracted from it. </span> 
+                        </span> 
+                    </label>
+                    <input id = "new-variation" value =" 0" formControlName = "availableQuantity" class="input-field">
+            
+            
+                <button type = 'submit' class = "submit-button"> Update</button>
+            </form>
+        </div>
+    }    
+</body>

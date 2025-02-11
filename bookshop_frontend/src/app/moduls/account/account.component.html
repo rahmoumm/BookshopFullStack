@@ -1,0 +1,76 @@
+<body>
+    <h1>User Account's Informations</h1>
+
+    <!-- @if(!modifyInformations && !modifyPassword){ -->
+        <div class = "infos-container">
+            <img src="./images/person_icone.jpg" alt="Avatar" class="avatar-image">
+            <div class = "separator"></div>
+            <div class="container">
+                <h1>Account Information</h1>
+                
+                <div class="info">
+                    <span class="label">Name:</span> <span id="user-name">  {{owner.firstName}} {{owner.lastName}} </span>
+                </div>
+                <div class="info">
+                    <span class="label">Email:</span> <span id="user-email">  {{owner.email}}</span>
+                </div>
+                <div class="info" id="role">
+                    <span class="label">Role:</span> <span id="user-email">  {{owner.mainRole}}</span>
+                </div>
+                <div class ="modifitcation-buttons">
+                    <button type = "button" class="account-button" (click) = "initModifyInformations()"> Update Informations </button>
+                    <button type = "button" class="account-button" (click) = "initModifyPassword()"> Update Password </button>    
+                </div>
+
+                <div class = "redirect-stock">
+                    <button type="button" (click) = "initPersonalStock()" class="stock-button"> Check you stock </button>
+                </div>
+            </div>
+        </div>
+    <!-- } -->
+
+    <!-- @else if(modifyInformations) {
+       <div class="modification-form-container">
+        <h2>Edit Your Account Details</h2>
+            <form [formGroup]="informationsForm" (ngSubmit)="sendNewInformations()" class="modification-form">
+                
+                <div class ="info-container">
+                    <label for="new-firstname" class="label-field"> Firstname </label>
+                    <input type="text" id="new-firstname" [value] ="informationsForm.value.firstname" formControlName = "firstname" class="input-field">
+                </div>
+                <div class ="info-container">
+                    <label for="new-lastname" class="label-field"> Lastname </label>
+                    <input type="text" id="new-lastname" [value] ="informationsForm.value.lastname" formControlName = "lastname" class="input-field">
+                </div>
+                <div class ="info-container">
+                    <label for ="new-email" class="label-field"> Email </label>
+                    <input type="text" id="new-email" [value] ="informationsForm.value.email" formControlName = "email" class="input-field">
+                </div>
+                
+                <button type="submit" class="submit-button">Update</button>
+            </form>
+       </div>
+    }
+    
+    @else {
+        <div class="modification-form-container" >
+            <h2>Change Your Account's Password</h2>
+            <form [formGroup]="passwordForm" (ngSubmit)="sendNewPassword()" class="modification-form">
+            
+                <div>
+                    <label for="new-password" class="label-field"> Password </label>
+                    <input type="password" id="new-password" formControlName = "newPassword" class="input-field">
+                </div>
+            
+                <div>
+                    <label for="new-password-rewritten" class="label-field"> Re-write password </label>
+                    <input type="password" id="new-password-rewritten" formControlName = "newPasswordRewritten" class="input-field">
+                </div>
+                
+                <button type="submit" class="submit-button">Update</button>
+            </form>
+        </div>
+        
+    } -->
+    
+</body>

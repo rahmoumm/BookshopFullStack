@@ -1,0 +1,30 @@
+
+<body>
+    <div class = "logo-container">
+        <span class="logo shelf">Shelf</span><span class="logo scape">Scape</span>
+    </div>
+
+    <div class = 'form-container'>
+        <h3> Welcom to your bookshop </h3>
+        <p> Please enter your credentials </p>
+
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="real-form">
+            <div class ='informations'>
+                <label for ="login-email" class="form-label"> Email </label>
+                <input type="text" id="login-email" class='input-field' formControlName = "email" >
+            </div>
+            <div class ='informations'>
+                <label for="login-password" class="form-label"> Password </label>
+                <input type="password" id="login-password" class='input-field' formControlName = "password">
+            </div>
+            
+            <button type="submit" class="submit-button">Login</button>
+        </form>
+        
+        <div id ="register">
+            <a href = "/register"> Sign up with Email</a>
+        </div>
+    </div>
+<body>
+
+

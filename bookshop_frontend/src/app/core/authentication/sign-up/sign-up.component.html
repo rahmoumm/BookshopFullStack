@@ -1,0 +1,43 @@
+<body>
+    <div class = "logo-container">
+        <span class="logo shelf">Shelf</span><span class="logo scape">Scape</span>
+    </div>
+    <div class="form-container">
+        <h3> Get started with your account</h3>
+        <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class = "real-form">
+    
+            <div class = 'informations'>
+                <label for="signup-firstName" class = 'form-label'> First Name </label>
+                <input type="text" id="signup-firstName" class="input-field" formControlName = "firstName">
+            </div>
+            <div class = 'informations'>
+                <label for="signup-lastName" class = 'form-label'> Last Name </label>
+                <input type="text" id="signup-lastName" class="input-field" formControlName = "lastName">
+            </div>
+            <div class = 'informations'>
+                <label for ="signup-email" class = 'form-label'> Email </label>
+                <input type="text" id="signup-email" class="input-field" formControlName = "email" >
+            </div>
+            <div class = 'informations'>
+                <label for="signup-password" class = 'form-label'> Password </label>
+                <input type="password" id="signup-password" class="input-field" formControlName = "password">
+            </div>
+
+            <div class="informations">
+                <label>
+                    <input type="radio" [value] = 3 formControlName="roleId">
+                      <span>Customer</span>
+                  </label>
+                  <label>
+                    <input type="radio" [value] = 2 formControlName="roleId">
+                      <span>Vendor</span>
+                  </label>
+            </div>
+            
+            
+            <button type="submit" class="submit-button">Sign up</button>
+        
+        </form>
+    </div>
+</body>
+

@@ -1,0 +1,53 @@
+<body>
+    @if(loading){
+        <p> Loading ..... </p>
+    }@else {
+        @if(modifyInformations == true){
+            <div class="modification-form-container">
+                <h2>Edit Your Account Details</h2>
+                <p>Please update your personal information below </p>
+                    <form [formGroup]="informationsForm" (ngSubmit)="sendNewInformations()" class="modification-form">
+                        
+                        <div class ="info-container">
+                            <label for="new-firstname" class="label-field"> Firstname </label>
+                            <input type="text" id="new-firstname" [value] ="informationsForm.value.firstname" formControlName = "firstname" class="input-field">
+                        </div>
+                        <div class ="info-container">
+                            <label for="new-lastname" class="label-field"> Lastname </label>
+                            <input type="text" id="new-lastname" [value] ="informationsForm.value.lastname" formControlName = "lastname" class="input-field">
+                        </div>
+                        <div class ="info-container">
+                            <label for ="new-email" class="label-field"> Email </label>
+                            <input type="text" id="new-email" [value] ="informationsForm.value.email" formControlName = "email" class="input-field">
+                        </div>
+                        
+                        <button type="submit" class="submit-button">Update</button>
+                    </form>
+            </div>
+        }
+        
+        @else if (modifyInformations == false ){
+            <div class="modification-form-container" >
+                <h2>Change Your Account's Password</h2>
+                <p> Please choose a strong new password</p>
+                <form [formGroup]="passwordForm" (ngSubmit)="sendNewPassword()" class="modification-form">
+                
+                    <div>
+                        <label for="new-password" class="label-field"> New Password </label>
+                        <input type="password" id="new-password" formControlName = "newPassword" class="input-field">
+                    </div>
+                
+                    <div>
+                        <label for="new-password-rewritten" class="label-field"> Re-write Password </label>
+                        <input type="password" id="new-password-rewritten" formControlName = "newPasswordRewritten" class="input-field">
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Update</button>
+                </form>
+            </div>
+        }
+    
+    }
+    
+    
+</body>

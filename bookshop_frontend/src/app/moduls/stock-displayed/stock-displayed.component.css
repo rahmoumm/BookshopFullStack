@@ -1,0 +1,22 @@
+body{
+    background-color: #FFF8E1;
+    height: 100vh;
+}
+
+.new-book-button{
+    margin: auto;
+    display: block;
+    background-color: #FFB300;
+    padding: 5px;
+    font-size: medium;
+}
+
+h1{
+  text-align: center;
+  font-family: Cursive, Lucida Handwriting;
+}
+
+a{
+    text-decoration: none;
+    display: inline;
+}

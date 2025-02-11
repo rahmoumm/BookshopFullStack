@@ -1,0 +1,46 @@
+.book-card {
+    border: 1px solid #ddd;
+    padding: 15px ; 
+    margin: 20px 10px;
+    display: flex;
+    background-color: #f6f3f0;
+    /* background-color: #F8F5F2; */
+    border-radius: 5px;
+    overflow: hidden;
+    height: 220px;
+  }
+  
+  /* The issue you're experiencing happens because the float: right;
+  property removes the floated element (the .check-stock-link) from the normal document flow.
+  As a result, its parent (.book-card) no longer considers the floated element's height. */
+
+  /* 15px 25px 15px */
+.check-stock-link{
+  float :  right;
+}
+
+.action-button{
+  margin-left: 10px;
+  padding : 10px 15px;
+  font-size:small;
+  background-color: #FFB300;
+
+}
+
+.book-image{
+  width: 150px;
+  height: 200px;
+}
+
+.book-infos{
+  display: flex;
+  flex-direction: column;
+}
+
+.image-container{
+  float: left;
+}
+
+.book-infos{
+  margin-left: 20px;
+}

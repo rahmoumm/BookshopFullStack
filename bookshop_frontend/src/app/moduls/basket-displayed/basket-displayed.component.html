@@ -1,0 +1,27 @@
+<body>
+
+    <h1> Hello {{owner.firstName}} {{owner.lastName}} !! </h1>
+    <h1> Check your basket </h1>
+
+    @if (loading) {
+        <p> Loading ....</p>
+    }
+
+    @else if (!loading && basket.wantedBooks.length == 0) {
+        <p> There is still no book in your basket </p>
+    }
+
+    @else {
+        @for (book of basket.wantedBooks; track book.id) {
+            <app-book [book] = 'book' [inBasketDisplayed] = 'true'></app-book>
+        }
+        
+        <div class="amount-container">
+            <p> Your total amount is :<span class="total-amount"> {{this.basket.totalAmount}} € </span>  </p>
+        </div>
+    }
+
+</body>
+
+
+

@@ -1,0 +1,26 @@
+<body>
+    <div class = "stock-card">
+            <div class="image-container">
+                <img src="./images/book_icon.jpg" class = "book-image">
+            </div>
+            <div class="name-price">
+
+                @if(personnalStock == true){
+                    <p> <strong>Book Name :</strong> {{this.stock.book.name}}</p>
+                }
+                <p><strong>Price :</strong> {{ this.stock.price }} €</p>
+                <p><strong>Supplier :</strong> {{ this.stock.user.firstName}} </p>
+
+                @if(personnalStock == true){
+                    <p> <strong>Quantity in stock :</strong> {{this.stock.availableQuantity}}</p>
+                    <a href="stocks/ofUser/{{this.stock.user.id}}/ofBook/{{this.stock.book.id}}" id='update-link'> Update stock </a>
+                    <button type="button" class="delete-button" (click)="deleteFromYouStock()"> Delet from Stock </button>
+                }
+                
+                @else {
+                    <button type="button" (click)="addBook()" class = "adding-button"> Add to basket </button>
+                }
+            </div>
+    </div>
+</body>
+

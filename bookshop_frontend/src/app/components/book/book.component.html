@@ -1,0 +1,26 @@
+<div class = "book-card">
+    <div class="image-container">
+        <img src="./images/book_icon.jpg" class ="book-image">
+    </div>
+
+    <div class="book-infos">
+        <h2>{{ book.name }}</h2>
+        <p><strong> Rating:</strong> {{ book.rating }} </p>
+    
+        @if(inBookDisplayed){
+            <a href="stocks/book/{{book.id}}" class="check-stock-link" 
+            (click)="stockService.stockServiceEvent('books', book.id)"> &#8680; Check in stock </a>
+        }
+    
+        @if(inBasketDisplayed){
+            <button type="button" (click)="deleteBookFromBasket()" class="action-button" > Remove </button>        
+        }
+    
+        @if(createNewStock){
+            <a href="{{getWantedUrlWithBookId()}}"> <button type ="button" class="action-button"> Add book to you stock </button> </a>
+            
+        }
+    </div>
+    
+
+</div>

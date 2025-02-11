@@ -1,0 +1,48 @@
+    
+@if(!needToCreateNewBook){
+
+<div class="form-container">
+    <h2> Update you stock :</h2>
+    <form [formGroup]="newStockInfo" (ngSubmit)="createStock()" class="stock-form">
+        <div class="informations">
+            <label for = "price-class" class = "form-label"> Book Price : </label>
+            <input class = "price-class" formControlName = "price" class = "form-input">
+        </div>
+        
+        <div class="informations">
+            <label for = "quantity-class" class = "form-label"> Quantity in Stock : </label>
+            <input class = "quantity-class" formControlName = "availableQuantity" class = "form-input">
+        </div>
+        <button type = "submit" class="submit-button"> Add to stock</button>
+    
+    </form> 
+</div>
+
+
+}
+@else {
+<div class="form-container">
+    <h2> Update you stock : </h2>
+    <p> Please specify the name of you book down below  </p>
+    <form [formGroup]="newStockInfo" (ngSubmit)="createBookAndStock()" class="stock-form">
+        
+        <div class="informations">
+            <label for = "book-name-class" class = "form-label"> Book Name : </label>
+            <input class = "book-name-class" formControlName = "name" class = "form-input">
+        </div>
+
+        <div class="informations">
+            <label for = "price-class" class = "form-label"> Book Price : </label>
+            <input class = "price-class" formControlName = "price" class = "form-input">
+        </div>
+        
+        <div class="informations">
+            <label for = "quantity-class" class = "form-label"> Quantity in Stock : </label>
+            <input class = "quantity-class" formControlName = "availableQuantity" class = "form-input">
+        </div>
+
+        <button type = "submit" class="submit-button"> Add to stock</button>
+    
+    </form>
+</div>
+}

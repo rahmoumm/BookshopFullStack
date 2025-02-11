@@ -1,0 +1,20 @@
+<nav class="navbar">
+        <div class="logo-container">
+            <span class="logo shelf">Shelf</span>
+            <span class="logo scape">Scape</span>
+        </div>
+
+    <a href="books" class="nav-item left">All books</a>
+    <a href="top_rated_books" class="nav-item left"> Top Rated</a>
+
+    @if(this.localStorageService.isLoggedIn()){
+        <a href="books" (click)="logout()" class="right-most logout">Logout</a>
+        <a href="Account"  class="nav-item right-most">My Account</a>
+        <a href="myBasket"  class="nav-item right-most">Basket</a>
+    }@else {
+        <a href="login" class="right-most login">Login</a>
+    }
+
+
+</nav>
+        
