@@ -4,9 +4,12 @@ import BookShop.demo.Exceptions.EmailAlreadyExistsException;
 import BookShop.demo.Exceptions.NoContentFoundException;
 import BookShop.demo.Exceptions.RessourceNotFoundException;
 import BookShop.demo.Exceptions.UserNotAuthorizedToDoThisActionException;
-import BookShop.demo.dtoMapper.UserLoginMapper;
-import BookShop.demo.dtoMapper.UserResponseMapper;
-import BookShop.demo.model.Role;
+import BookShop.demo.dto.UserInfoDTO;
+import BookShop.demo.dto.UserLoginDTO;
+import BookShop.demo.dto.UserResponseDTO;
+import BookShop.demo.dtoMapper.userMapper.UserInfoMapper;
+import BookShop.demo.dtoMapper.userMapper.UserLoginMapper;
+import BookShop.demo.dtoMapper.userMapper.UserResponseMapper;
 import BookShop.demo.model.User;
 import BookShop.demo.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +23,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -34,31 +38,36 @@ public class UserService {
 
     @Autowired
     UserLoginMapper userLoginMapper;
-
     @Autowired
     UserResponseMapper userResponseMapper;
+    @Autowired
+    UserInfoMapper userInfoMapper;
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
-    public User getUserById( int userId) throws RessourceNotFoundException {
+    public UserResponseDTO getUserById(int userId) throws RessourceNotFoundException {
         User user = userRepository.findById(userId);
         if(user == null){
             throw new RessourceNotFoundException(String.format("The user with the id %d is not found", userId) );
         }
-        return user;
+        return userResponseMapper.toDTO(user);
     }
 
-    public List<User> findAllUsers() throws NoContentFoundException {
+    public List<UserResponseDTO> findAllUsers() throws NoContentFoundException {
         List<User> allUsers = userRepository.findAll();
+        List<UserResponseDTO> mappedUsers = new ArrayList<>();
+        for(User user : allUsers){
+            mappedUsers.add(userResponseMapper.toDTO(user));
+        }
         if(allUsers == null){
             throw new NoContentFoundException("There are no users yet in the Application");
         }else{
-            return allUsers;
+            return mappedUsers;
         }
     }
 
     public void modifyUserInfos
-            (int userId, User newUser, UserDetails userDetails)
+            (int userId, UserInfoDTO newUser, UserDetails userDetails)
             throws RessourceNotFoundException, UserNotAuthorizedToDoThisActionException {
         User user = userRepository.findById(userId);
 
@@ -67,9 +76,6 @@ public class UserService {
         }
 
         log.info(newUser.toString());
-
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String email = authentication.getName();
 
         String email = userDetails.getUsername();
         String role = userDetails.getAuthorities().toString();
@@ -90,9 +96,7 @@ public class UserService {
         if(newUser.getPassword() != null){
             user.setPassword(  new BCryptPasswordEncoder(10).encode(newUser.getPassword()) );
         }
-        if(newUser.getImage() != null){
-            user.setImage(newUser.getImage());
-        }
+
         userRepository.save(user);
     }
 
@@ -135,16 +139,16 @@ public class UserService {
         return  location;
     }
 
-    public User userExists(User user, UriComponentsBuilder ucb) throws RessourceNotFoundException{
+    public UserInfoDTO userExists(UserLoginDTO userLogin, UriComponentsBuilder ucb) throws RessourceNotFoundException{
 
-        if(!userRepository.existsByEmail(user.getEmail())){
+        if(!userRepository.existsByEmail(userLogin.getEmail())){
             throw new RessourceNotFoundException("User does not exist");
         }
 
-        User userDb = userRepository.findByEmail(user.getEmail());
+        User userDb = userRepository.findByEmail(userLogin.getEmail());
 
-        if(BCrypt.checkpw(user.getPassword(), userDb.getPassword())){
-            return userDb;
+        if(BCrypt.checkpw(userLogin.getPassword(), userDb.getPassword())){
+            return userInfoMapper.toDTO(userDb);
         }
 
         throw  new RessourceNotFoundException("Password used does not match user's password");

@@ -1,4 +1,4 @@
-package BookShop.demo.dtoMapper;
+package BookShop.demo.dtoMapper.userMapper;
 
 import BookShop.demo.dto.UserLoginDTO;
 import BookShop.demo.model.User;

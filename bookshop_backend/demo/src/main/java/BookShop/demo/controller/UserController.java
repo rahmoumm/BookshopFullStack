@@ -5,8 +5,10 @@ import BookShop.demo.Exceptions.EmailAlreadyExistsException;
 import BookShop.demo.Exceptions.NoContentFoundException;
 import BookShop.demo.Exceptions.RessourceNotFoundException;
 import BookShop.demo.Exceptions.UserNotAuthorizedToDoThisActionException;
+import BookShop.demo.dto.UserInfoDTO;
+import BookShop.demo.dto.UserLoginDTO;
+import BookShop.demo.dto.UserResponseDTO;
 import BookShop.demo.model.ErrorReport;
-import BookShop.demo.model.Role;
 import BookShop.demo.model.User;
 import BookShop.demo.repository.UserRepository;
 import BookShop.demo.service.UserService;
@@ -16,7 +18,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -63,21 +64,21 @@ public class UserController {
     }
 
     @GetMapping("/nonAuth/users/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") int userId) throws RessourceNotFoundException{
-        User user = userService.getUserById(userId);
+    public ResponseEntity<UserResponseDTO> getUserById(@PathVariable("id") int userId) throws RessourceNotFoundException{
+        UserResponseDTO user = userService.getUserById(userId);
         return ResponseEntity.ok(user);
     }
 
     @GetMapping("/nonAuth/users")
-    public ResponseEntity<List<User>> findAllUsers() throws NoContentFoundException{
-        List<User> allUsers = userService.findAllUsers();
+    public ResponseEntity<List<UserResponseDTO>> findAllUsers() throws NoContentFoundException{
+        List<UserResponseDTO> allUsers = userService.findAllUsers();
         return ResponseEntity.ok(allUsers);
 
     }
 
     @PutMapping("/users/{id}")
     public ResponseEntity<Void> modifyUserInfos
-            (@PathVariable("id") int userId, @RequestBody User newUser, @AuthenticationPrincipal UserDetails userDetails)
+            (@PathVariable("id") int userId, @RequestBody UserInfoDTO newUser, @AuthenticationPrincipal UserDetails userDetails)
             throws RessourceNotFoundException, UserNotAuthorizedToDoThisActionException {
 
         userService.modifyUserInfos(userId, newUser, userDetails);
@@ -107,10 +108,10 @@ public class UserController {
     }
 
     @PostMapping("/checkLogin")
-    public ResponseEntity<User> login(@RequestBody User user, UriComponentsBuilder ucb)
+    public ResponseEntity<UserInfoDTO> login(@RequestBody UserLoginDTO userLogin, UriComponentsBuilder ucb)
         throws RessourceNotFoundException{
 
-        User userFound = userService.userExists(user, ucb);
+        UserInfoDTO userFound = userService.userExists(userLogin, ucb);
         return ResponseEntity.ok(userFound);
     }
 

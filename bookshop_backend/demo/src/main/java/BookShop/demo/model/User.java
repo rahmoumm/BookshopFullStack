@@ -33,15 +33,6 @@ public class User {
     @OneToOne(mappedBy = "purchaser",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Basket basket;
 
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-
     @ManyToMany(fetch = FetchType.EAGER)
     // Fetch EAGER so that the roles are fetched immediately when we are fetching the user,
     // knowing that a user will not have a lot of roles to the point where it would impact the
@@ -51,6 +42,7 @@ public class User {
     inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id")
     )
     private List<Role> roles = new ArrayList<>();
+
 
     public User(){}
 
@@ -71,6 +63,14 @@ public class User {
         this.email = email;
         this.password = password;
         this.roles.add(role);
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public Integer getId() {
@@ -96,6 +96,7 @@ public class User {
     public byte[] getImage() {
         return image;
     }
+    public void setId(Integer id){this.id = id;}
 
     public void setImage(byte[] image) {
         this.image = image;

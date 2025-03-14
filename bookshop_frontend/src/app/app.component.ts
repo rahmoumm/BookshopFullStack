@@ -47,7 +47,7 @@ export class AppComponent {
               let owner : User = val.body!;
               owner.password = event.data.value.password;
               owner.mainRole = this.loginService.getRole(owner.roles)!;
-              
+              console.log(owner)
               this.localStorageService.setValue("User", JSON.stringify(owner))
                             
               this.loginService.userServiceEvent("HeaderEvent", true);

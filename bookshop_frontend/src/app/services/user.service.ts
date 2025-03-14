@@ -57,12 +57,12 @@ export class UserService {
 
     if (roles == null) return 'UNDEFINED'
     let n = roles.length;
-    let mainRole = roles[0].rolename;
+    let mainRole = roles[0];
     if(mainRole === "ADMIN") return mainRole;
 
     for(const role of roles){
-      if(mainRole === "SELLER" && role.rolename === "ADMIN") return role.rolename;
-      if(mainRole === "USER") mainRole = role.rolename;
+      if(mainRole === "SELLER" && role === "ADMIN") return role;
+      if(mainRole === "USER") mainRole = role;
     }
     return mainRole!;
   }

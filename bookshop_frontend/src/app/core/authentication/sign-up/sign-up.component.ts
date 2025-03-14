@@ -28,9 +28,9 @@ export class SignUpComponent {
     console.log("sign up")
     let role! : Role;
     if(this.signUpForm.controls['roleId'].value === 2){
-      role = { id : 2}
+      role = { id : 2, roleName : 'SELLER'}
     }else if (this.signUpForm.controls['roleId'].value === 3){
-      role = { id : 3}
+      role = { id : 3, roleName : 'USER'}
     }
     this.signUpForm.addControl('roles', this.formBuilder.control([role]))
     this.signUpForm.removeControl('roleId');

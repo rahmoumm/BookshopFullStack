@@ -1,15 +1,13 @@
 package BookShop.demo.dto;
 
-import jakarta.persistence.Lob;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class UserResponseDTO {
-    private Integer id;
+public class UserInfoDTO {
+
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
     private List<String> roles;
 
     public String getFirstName() {
@@ -18,14 +16,6 @@ public class UserResponseDTO {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getLastName() {
@@ -42,6 +32,14 @@ public class UserResponseDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<String> getRoles() {
