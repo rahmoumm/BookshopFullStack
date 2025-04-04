@@ -12,7 +12,7 @@ public class BookShopApplication {
 
 		System.setProperty("DB_USERNAME", dotenv.get("DB_USERNAME"));
 		System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD"));
-		System.setProperty("DB_LINK&", dotenv.get("DB_LINK"));
+		System.setProperty("DB_LINK", dotenv.get("DB_LINK"));
 
 		SpringApplication.run(BookShopApplication.class, args);
 	}
