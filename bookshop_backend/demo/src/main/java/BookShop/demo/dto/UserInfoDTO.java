@@ -3,7 +3,7 @@ package BookShop.demo.dto;
 import java.util.List;
 
 public class UserInfoDTO {
-
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
@@ -48,5 +48,13 @@ public class UserInfoDTO {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
